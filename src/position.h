@@ -2,9 +2,9 @@
 
 #include <cstdint>
 
-#include "printable.h"
+#include "display.h"
 
-struct Position : public Printable {
+struct Position : public Display {
 private:
     const int32_t m_x;
     const int32_t m_y;

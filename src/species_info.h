@@ -4,9 +4,9 @@
 #include <string>
 
 #include "species_type.h"
-#include "printable.h"
+#include "display.h"
 
-struct SpeciesInfo : public Printable {
+struct SpeciesInfo : public Display {
 private:
     const SpeciesType m_type;
     const std::string m_name;

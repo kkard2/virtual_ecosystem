@@ -2,7 +2,7 @@
 
 #include <string>
 
-class Printable {
+class Display {
 public:
     [[nodiscard]] virtual auto to_string() const -> std::string = 0;
 };
