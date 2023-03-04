@@ -6,8 +6,8 @@
 
 struct Position : public Printable {
 private:
-    int32_t m_x;
-    int32_t m_y;
+    const int32_t m_x;
+    const int32_t m_y;
 
 public:
     Position(int32_t x, int32_t y);
