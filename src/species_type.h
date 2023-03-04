@@ -3,8 +3,7 @@
 #include <cstdint>
 
 enum class SpeciesType : uint8_t {
-    NONE = 0,
-    ALGA,
+    ALGA = 1,
     FUNGUS,
     BACTERIA,
 };
