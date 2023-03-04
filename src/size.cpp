@@ -20,7 +20,9 @@ auto Size::with_height(uint32_t new_height) const -> Size {
 }
 
 auto Size::contains(const Position &position) const -> bool {
-    return position.x() >= 0 && position.x() < m_width && position.y() >= 0 && position.y() < m_height;
+    return
+        position.x() >= 0 && static_cast<uint32_t>(position.x()) < m_width &&
+        position.y() >= 0 && static_cast<uint32_t>(position.y()) < m_height;
 }
 
 std::string Size::to_string() const {
