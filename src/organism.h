@@ -17,7 +17,7 @@ public:
 public:
     [[nodiscard]] auto info() const -> const SpeciesInfo &;
     [[nodiscard]] auto position() const -> const Position &;
-    [[nodiscard]] auto health() const -> uint32_t;
+    [[nodiscard]] auto age() const -> uint32_t;
     [[nodiscard]] auto meals_eaten() const -> uint32_t;
 
     [[nodiscard]] auto is_alive() const -> bool;

@@ -3,7 +3,7 @@
 Organism::Organism(const SpeciesInfo &info, Position position)
     : m_info(info)
     , m_position(std::move(position))
-    , m_age(info.health_min())
+    , m_age(info.age_min())
     , m_meals_eaten(0)
 {
 }
@@ -16,7 +16,7 @@ auto Organism::position() const -> const Position & {
     return m_position;
 }
 
-auto Organism::health() const -> uint32_t {
+auto Organism::age() const -> uint32_t {
     return m_age;
 }
 
@@ -25,7 +25,7 @@ auto Organism::meals_eaten() const -> uint32_t {
 }
 
 auto Organism::is_alive() const -> bool {
-    return m_age >= info().health_max();
+    return m_age >= info().age_max();
 }
 
 auto Organism::update() -> void {

@@ -60,11 +60,11 @@ auto SpeciesInfo::symbol() const -> char {
     return m_symbol;
 }
 
-auto SpeciesInfo::health_min() const -> uint32_t {
+auto SpeciesInfo::age_min() const -> uint32_t {
     return m_age_min;
 }
 
-auto SpeciesInfo::health_max() const -> uint32_t {
+auto SpeciesInfo::age_max() const -> uint32_t {
     return m_age_max;
 }
 
@@ -80,7 +80,7 @@ std::string SpeciesInfo::to_string() const {
     std::stringstream ss;
     ss
         << name() << " (" << symbol() << "):" << std::endl
-        << "  Health: " << health_min() << "-" << health_max() << std::endl
+        << "  Age: " << age_min() << "-" << age_max() << std::endl
         << "  Offspring cost: " << offspring_cost() << std::endl
         << "  Meal limit: " << meal_limit();
 

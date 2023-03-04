@@ -36,8 +36,8 @@ public:
     [[nodiscard]] auto type() const -> SpeciesType;
     [[nodiscard]] auto name() const -> const std::string &;
     [[nodiscard]] auto symbol() const -> char;
-    [[nodiscard]] auto health_min() const -> uint32_t;
-    [[nodiscard]] auto health_max() const -> uint32_t;
+    [[nodiscard]] auto age_min() const -> uint32_t;
+    [[nodiscard]] auto age_max() const -> uint32_t;
     [[nodiscard]] auto offspring_cost() const -> uint32_t;
     [[nodiscard]] auto meal_limit() const -> uint32_t;
 
