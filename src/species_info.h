@@ -28,6 +28,11 @@ public:
     ~SpeciesInfo() = default;
 
 public:
+    [[nodiscard]] static auto default_alga() -> const SpeciesInfo &;
+    [[nodiscard]] static auto default_fungus() -> const SpeciesInfo &;
+    [[nodiscard]] static auto default_bacteria() -> const SpeciesInfo &;
+
+public:
     [[nodiscard]] auto type() const -> SpeciesType;
     [[nodiscard]] auto name() const -> const std::string &;
     [[nodiscard]] auto symbol() const -> char;

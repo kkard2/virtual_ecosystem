@@ -10,17 +10,15 @@ class Settings {
 private:
     const char m_corpse_symbol;
     const char m_empty_symbol;
-    const std::unique_ptr<SpeciesInfo> m_alga_info;
-    const std::unique_ptr<SpeciesInfo> m_fungus_info;
-    const std::unique_ptr<SpeciesInfo> m_bacteria_info;
-
-    const std::map<SpeciesType, const SpeciesInfo &> m_species_info_by_type;
-    const std::map<char, const SpeciesInfo &> m_species_info_by_symbol;
+    const SpeciesInfo &m_alga_info;
+    const SpeciesInfo &m_fungus_info;
+    const SpeciesInfo &m_bacteria_info;
 
 public:
+    // SAFETY: References must be valid for the lifetime of the Settings object.
     Settings(
-        char corpse_symbol, char empty_symbol, std::unique_ptr<SpeciesInfo> alga_info,
-        std::unique_ptr<SpeciesInfo> fungus_info, std::unique_ptr<SpeciesInfo> bacteria_info
+        char corpse_symbol, char empty_symbol,
+        const SpeciesInfo &alga_info, const SpeciesInfo &fungus_info, const SpeciesInfo &bacteria_info
     );
 
     Settings(const Settings &) = delete;
@@ -38,6 +36,7 @@ public:
     [[nodiscard]] auto fungus_info() const -> const SpeciesInfo &;
     [[nodiscard]] auto bacteria_info() const -> const SpeciesInfo &;
 
-    [[nodiscard]] auto species_info(SpeciesType type) const -> const SpeciesInfo &;
-    [[nodiscard]] auto species_info(char symbol) const -> const SpeciesInfo &;
+private:
+    void assert_info_types_correct() const;
+    void assert_symbols_unique() const;
 };

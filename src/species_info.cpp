@@ -15,6 +15,35 @@ SpeciesInfo::SpeciesInfo(
     , m_offspring_cost(offspring_cost)
     , m_meal_limit(meal_limit)
 {
+    if (health_min > health_max) {
+        throw std::invalid_argument("health_min must be less than or equal to health_max");
+    }
+
+
+}
+
+auto SpeciesInfo::default_alga() -> const SpeciesInfo & {
+    static const auto info = SpeciesInfo(
+        SpeciesType::ALGA, "Alga", '*', 5, 10, 2, 6
+    );
+
+    return info;
+}
+
+auto SpeciesInfo::default_fungus() -> const SpeciesInfo & {
+    static const auto info = SpeciesInfo(
+        SpeciesType::FUNGUS, "Fungus", '#', 40, 60, 3, 30
+    );
+
+    return info;
+}
+
+auto SpeciesInfo::default_bacteria() -> const SpeciesInfo & {
+    static const auto info = SpeciesInfo(
+        SpeciesType::BACTERIA, "Bacteria", 'B', 25, 40, 3, 10
+    );
+
+    return info;
 }
 
 auto SpeciesInfo::type() const -> SpeciesType {
