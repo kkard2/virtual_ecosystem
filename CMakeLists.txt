@@ -3,4 +3,7 @@ project(virtual_ecosystem)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(virtual_ecosystem src/main.cpp)
+add_executable(virtual_ecosystem
+    src/main.cpp
+    src/position.cpp
+)
