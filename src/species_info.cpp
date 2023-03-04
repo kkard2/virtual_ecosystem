@@ -1,6 +1,7 @@
 #include "species_info.h"
 
 #include <utility>
+#include <sstream>
 
 SpeciesInfo::SpeciesInfo(
     SpeciesType type, std::string name, char symbol, uint32_t health_min, uint32_t health_max, uint32_t offspring_cost,
@@ -42,4 +43,15 @@ auto SpeciesInfo::offspring_cost() const -> uint32_t {
 
 auto SpeciesInfo::meal_limit() const -> uint32_t {
     return m_meal_limit;
+}
+
+std::string SpeciesInfo::to_string() const {
+    std::stringstream ss;
+    ss
+        << name() << " (" << symbol() << "):" << std::endl
+        << "  Health: " << health_min() << "-" << health_max() << std::endl
+        << "  Offspring cost: " << offspring_cost() << std::endl
+        << "  Meal limit: " << meal_limit();
+
+    return ss.str();
 }

@@ -4,8 +4,9 @@
 #include <string>
 
 #include "species_type.h"
+#include "printable.h"
 
-struct SpeciesInfo {
+struct SpeciesInfo : public Printable {
 private:
     const SpeciesType m_type;
     const std::string m_name;
@@ -21,6 +22,11 @@ public:
         uint32_t offspring_cost, uint32_t meal_limit
     );
 
+    SpeciesInfo(const SpeciesInfo &) = delete;
+    auto operator=(const SpeciesInfo &) -> SpeciesInfo & = delete;
+
+    ~SpeciesInfo() = default;
+
 public:
     [[nodiscard]] auto type() const -> SpeciesType;
     [[nodiscard]] auto name() const -> const std::string &;
@@ -29,4 +35,8 @@ public:
     [[nodiscard]] auto health_max() const -> uint32_t;
     [[nodiscard]] auto offspring_cost() const -> uint32_t;
     [[nodiscard]] auto meal_limit() const -> uint32_t;
+
+public:
+    // Printable
+    [[nodiscard]] std::string to_string() const override;
 };
