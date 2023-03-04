@@ -4,19 +4,19 @@
 
 class Random {
 private:
-    std::random_device m_random_device;
+    const uint32_t m_seed;
+    std::default_random_engine m_engine;
 
-private:
+public:
     Random();
+    explicit Random(uint32_t seed);
+
+    Random(const Random &) = delete;
+    auto operator=(const Random &) -> Random & = delete;
     ~Random() = default;
 
 public:
-    Random(const Random &) = delete;
-    auto operator=(const Random &) -> Random & = delete;
+    [[nodiscard]] auto seed() const -> uint32_t;
 
-public:
-    static auto get(int32_t min, int32_t max) -> int32_t;
-
-private:
-    static auto instance() -> Random &;
+    auto get(int32_t min, int32_t max) -> int32_t;
 };

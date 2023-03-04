@@ -1,6 +1,16 @@
 #include "random.h"
 
-Random::Random() : m_random_device() {
+Random::Random() : Random(std::random_device()()) {
+}
+
+Random::Random(uint32_t seed)
+    : m_seed(seed)
+    , m_engine(seed)
+{
+}
+
+auto Random::seed() const -> uint32_t {
+    return m_seed;
 }
 
 auto Random::get(int32_t min, int32_t max) -> int32_t {
@@ -9,10 +19,5 @@ auto Random::get(int32_t min, int32_t max) -> int32_t {
     }
 
     auto distribution = std::uniform_int_distribution<int32_t>(min, max);
-    return distribution(instance().m_random_device);
-}
-
-auto Random::instance() -> Random & {
-    static Random instance;
-    return instance;
+    return distribution(m_engine);
 }
