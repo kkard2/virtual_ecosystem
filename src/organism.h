@@ -12,6 +12,7 @@ private:
     uint32_t m_meals_eaten;
 
 public:
+    // SAFETY: References must outlive this object.
     Organism(const SpeciesInfo &info, Position position);
 
 public:

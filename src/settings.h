@@ -15,7 +15,7 @@ private:
     const SpeciesInfo &m_bacteria_info;
 
 public:
-    // SAFETY: References must be valid for the lifetime of the Settings object.
+    // SAFETY: References must outlive this object.
     Settings(
         char corpse_symbol, char empty_symbol,
         const SpeciesInfo &alga_info, const SpeciesInfo &fungus_info, const SpeciesInfo &bacteria_info
