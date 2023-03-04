@@ -3,6 +3,7 @@
 #include <cstdint>
 
 #include "display.h"
+#include "position.h"
 
 struct Size : public Display {
 private:
@@ -18,6 +19,8 @@ public:
 
     [[nodiscard]] auto with_width(uint32_t new_width) const -> Size;
     [[nodiscard]] auto with_height(uint32_t new_height) const -> Size;
+
+    [[nodiscard]] auto contains(const Position &position) const -> bool;
 
 public:
     [[nodiscard]] std::string to_string() const override;
