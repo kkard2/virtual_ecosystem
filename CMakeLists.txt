@@ -8,4 +8,5 @@ add_executable(virtual_ecosystem
     src/position.cpp
     src/species_info.cpp
     src/random.cpp
+    src/size.cpp
 )

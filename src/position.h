@@ -20,6 +20,5 @@ public:
     [[nodiscard]] auto with_y(int32_t new_y) const -> Position;
 
 public:
-    // Printable
     [[nodiscard]] std::string to_string() const override;
 };

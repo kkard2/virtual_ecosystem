@@ -37,6 +37,5 @@ public:
     [[nodiscard]] auto meal_limit() const -> uint32_t;
 
 public:
-    // Printable
     [[nodiscard]] std::string to_string() const override;
 };
