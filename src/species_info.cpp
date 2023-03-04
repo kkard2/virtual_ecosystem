@@ -19,7 +19,9 @@ SpeciesInfo::SpeciesInfo(
         throw std::invalid_argument("health_min must be less than or equal to health_max");
     }
 
-
+    if (offspring_cost > meal_limit) {
+        throw std::invalid_argument("offspring_cost must be less than or equal to meal_limit");
+    }
 }
 
 auto SpeciesInfo::default_alga() -> const SpeciesInfo & {
