@@ -8,7 +8,7 @@ private:
     const SpeciesInfo &m_info;
 
     Position m_position;
-    uint32_t m_health;
+    uint32_t m_age;
     uint32_t m_meals_eaten;
 
 public:

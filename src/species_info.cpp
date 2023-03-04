@@ -4,19 +4,19 @@
 #include <sstream>
 
 SpeciesInfo::SpeciesInfo(
-    SpeciesType type, std::string name, char symbol, uint32_t health_min, uint32_t health_max, uint32_t offspring_cost,
-    uint32_t meal_limit
+        SpeciesType type, std::string name, char symbol, uint32_t age_min, uint32_t age_max, uint32_t offspring_cost,
+        uint32_t meal_limit
 )
     : m_type(type)
     , m_name(std::move(name))
     , m_symbol(symbol)
-    , m_health_min(health_min)
-    , m_health_max(health_max)
+    , m_age_min(age_min)
+    , m_age_max(age_max)
     , m_offspring_cost(offspring_cost)
     , m_meal_limit(meal_limit)
 {
-    if (health_min > health_max) {
-        throw std::invalid_argument("health_min must be less than or equal to health_max");
+    if (age_min > age_max) {
+        throw std::invalid_argument("age_min must be less than or equal to age_max");
     }
 
     if (offspring_cost > meal_limit) {
@@ -61,11 +61,11 @@ auto SpeciesInfo::symbol() const -> char {
 }
 
 auto SpeciesInfo::health_min() const -> uint32_t {
-    return m_health_min;
+    return m_age_min;
 }
 
 auto SpeciesInfo::health_max() const -> uint32_t {
-    return m_health_max;
+    return m_age_max;
 }
 
 auto SpeciesInfo::offspring_cost() const -> uint32_t {

@@ -11,15 +11,15 @@ private:
     const SpeciesType m_type;
     const std::string m_name;
     const char m_symbol;
-    const uint32_t m_health_min;
-    const uint32_t m_health_max;
+    const uint32_t m_age_min;
+    const uint32_t m_age_max;
     const uint32_t m_offspring_cost;
     const uint32_t m_meal_limit;
 
 public:
     SpeciesInfo(
-        SpeciesType type, std::string name, char symbol, uint32_t health_min, uint32_t health_max,
-        uint32_t offspring_cost, uint32_t meal_limit
+            SpeciesType type, std::string name, char symbol, uint32_t age_min, uint32_t age_max,
+            uint32_t offspring_cost, uint32_t meal_limit
     );
 
     SpeciesInfo(const SpeciesInfo &) = delete;
