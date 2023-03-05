@@ -3,6 +3,10 @@
 Fungus::Fungus(const SpeciesInfo &info) : Organism(info) {
 }
 
+auto Fungus::clone() const -> std::unique_ptr<Organism> {
+    return std::make_unique<Fungus>(*this);
+}
+
 auto Fungus::try_eat(ActionContext &context) const -> bool {
     auto food = context.random_neighbor(CellType::CORPSE);
 

@@ -8,6 +8,12 @@ Map::Map(Size size, std::map<Position, std::unique_ptr<Organism>, PositionCompar
 {
 }
 
+Map::Map(const Map &map) : m_size(map.m_size) {
+    for (auto &[position, organism] : map.m_organisms) {
+        m_organisms[position] = organism->clone();
+    }
+}
+
 auto Map::size() const -> const Size & {
     return m_size;
 }

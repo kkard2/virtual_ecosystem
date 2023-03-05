@@ -16,7 +16,6 @@ private:
     const Position m_position;
 
 public:
-    // SAFETY: References must outlive this object.
     ActionContext(Random &random, Map &map, Position position);
 
 public:

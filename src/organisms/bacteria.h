@@ -6,6 +6,9 @@ class Bacteria : public Organism {
 public:
     explicit Bacteria(const SpeciesInfo &info);
 
+public:
+    [[nodiscard]] auto clone() const -> std::unique_ptr<Organism> override;
+
 private:
     static auto try_eat_type(ActionContext &context, CellType type) -> bool;
 

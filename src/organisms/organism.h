@@ -16,9 +16,11 @@ private:
     uint32_t m_meals_eaten;
 
 public:
-    // SAFETY: References must outlive this object (and its offspring).
     explicit Organism(const SpeciesInfo &info);
     virtual ~Organism() = default;
+
+public:
+    [[nodiscard]] virtual auto clone() const -> std::unique_ptr<Organism> = 0;
 
 protected:
     virtual auto try_eat(ActionContext &context) const -> bool = 0;
@@ -34,6 +36,9 @@ public:
 
     auto update() -> void;
     auto perform_action(ActionContext &context) -> void;
+
+    // Should only be used to create corpses when loading a map.
+    auto kill() -> void;
 
 private:
     [[nodiscard]] auto is_hungry() const -> bool;

@@ -26,7 +26,7 @@ auto Simulation::step_forward() -> void {
     }
 
     auto &current_map = m_maps[m_current_map_index - 1];
-    auto new_map = Map(current_map);
+    auto new_map = current_map;
 
     for (auto &[position, organism] : new_map.organisms()) {
         organism->update();

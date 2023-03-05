@@ -2,8 +2,10 @@
 
 #include <map>
 #include <memory>
+#include <optional>
 
 #include "species_info.h"
+#include "../organisms/organism.h"
 
 class Settings {
 private:
@@ -14,7 +16,6 @@ private:
     const SpeciesInfo &m_bacteria_info;
 
 public:
-    // SAFETY: References must outlive this object.
     Settings(
         char corpse_symbol, char empty_symbol,
         const SpeciesInfo &alga_info, const SpeciesInfo &fungus_info, const SpeciesInfo &bacteria_info
@@ -34,6 +35,8 @@ public:
     [[nodiscard]] auto alga_info() const -> const SpeciesInfo &;
     [[nodiscard]] auto fungus_info() const -> const SpeciesInfo &;
     [[nodiscard]] auto bacteria_info() const -> const SpeciesInfo &;
+
+    [[nodiscard]] auto make_species_from_symbol(char symbol) const -> std::optional<std::unique_ptr<Organism>>;
 
 private:
     void assert_info_types_correct() const;

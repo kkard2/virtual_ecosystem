@@ -18,6 +18,7 @@ private:
 
 public:
     Map(Size size, std::map<Position, std::unique_ptr<Organism>, PositionComparer> organisms);
+    Map(const Map &);
 
 public:
     [[nodiscard]] auto size() const -> const Size &;

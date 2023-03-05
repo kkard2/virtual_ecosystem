@@ -53,6 +53,10 @@ auto Organism::perform_action(ActionContext &context) -> void {
     }
 }
 
+auto Organism::kill() -> void {
+    m_age = info().age_max();
+}
+
 auto Organism::is_hungry() const -> bool {
     return m_meals_eaten >= info().meal_limit();
 }
