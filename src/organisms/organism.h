@@ -5,14 +5,15 @@
 #include "../action_context.h"
 
 class Organism {
-private:
-    const SpeciesInfo &m_info;
-
-    uint32_t m_age;
+protected:
     uint32_t m_meals_eaten;
 
+private:
+    const SpeciesInfo &m_info;
+    uint32_t m_age;
+
 public:
-    // SAFETY: References must outlive this object.
+    // SAFETY: References must outlive this object (and its offspring).
     explicit Organism(const SpeciesInfo &info);
 
 public:
@@ -26,6 +27,7 @@ public:
     [[nodiscard]] auto is_alive() const -> bool;
 
     auto update() -> void;
-private:
+
+protected:
     [[nodiscard]] auto is_hungry() const -> bool;
 };
