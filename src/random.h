@@ -18,5 +18,6 @@ public:
 public:
     [[nodiscard]] auto seed() const -> uint32_t;
 
-    auto get(int32_t min, int32_t max) -> int32_t;
+    auto next(int32_t min, int32_t max) -> int32_t;
+    auto next(size_t min, size_t max) -> size_t;
 };
