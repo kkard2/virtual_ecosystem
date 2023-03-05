@@ -42,7 +42,7 @@ auto SpeciesInfo::default_fungus() -> const SpeciesInfo & {
 
 auto SpeciesInfo::default_bacteria() -> const SpeciesInfo & {
     static const auto info = SpeciesInfo(
-        SpeciesType::BACTERIA, "Bacteria", 'B', 25, 40, 3, 10
+        SpeciesType::BACTERIA, "Bacteria", '@', 25, 40, 3, 10
     );
 
     return info;
