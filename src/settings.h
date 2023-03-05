@@ -3,7 +3,6 @@
 #include <map>
 #include <memory>
 
-#include "size.h"
 #include "species_info.h"
 
 class Settings {

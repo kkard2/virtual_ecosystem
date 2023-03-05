@@ -22,3 +22,8 @@ public:
 public:
     [[nodiscard]] std::string to_string() const override;
 };
+
+class PositionComparer {
+public:
+    [[nodiscard]] auto operator()(const Position &lhs, const Position &rhs) const -> bool;
+};

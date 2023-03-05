@@ -1,8 +1,7 @@
 #include "organism.h"
 
-Organism::Organism(const SpeciesInfo &info, Position position)
+Organism::Organism(const SpeciesInfo &info)
     : m_info(info)
-    , m_position(std::move(position))
     , m_age(info.age_min())
     , m_meals_eaten(0)
 {
@@ -10,10 +9,6 @@ Organism::Organism(const SpeciesInfo &info, Position position)
 
 auto Organism::info() const -> const SpeciesInfo & {
     return m_info;
-}
-
-auto Organism::position() const -> const Position & {
-    return m_position;
 }
 
 auto Organism::age() const -> uint32_t {

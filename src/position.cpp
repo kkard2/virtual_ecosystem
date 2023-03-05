@@ -22,3 +22,7 @@ auto Position::x() const -> int32_t {
 auto Position::y() const -> int32_t {
     return m_y;
 }
+
+auto PositionComparer::operator()(const Position &lhs, const Position &rhs) const -> bool {
+    return lhs.x() < rhs.x() || (lhs.x() == rhs.x() && lhs.y() < rhs.y());
+}

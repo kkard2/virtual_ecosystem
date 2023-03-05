@@ -18,8 +18,8 @@ private:
 
 public:
     SpeciesInfo(
-            SpeciesType type, std::string name, char symbol, uint32_t age_min, uint32_t age_max,
-            uint32_t offspring_cost, uint32_t meal_limit
+        SpeciesType type, std::string name, char symbol, uint32_t age_min, uint32_t age_max,
+        uint32_t offspring_cost, uint32_t meal_limit
     );
 
     SpeciesInfo(const SpeciesInfo &) = delete;

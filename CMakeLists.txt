@@ -11,4 +11,5 @@ add_executable(virtual_ecosystem
     src/size.cpp
     src/settings.cpp
     src/organism.cpp
+    src/map.cpp
 )
