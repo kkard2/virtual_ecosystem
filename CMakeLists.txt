@@ -13,6 +13,7 @@ add_executable(virtual_ecosystem
     src/map.cpp
     src/action_context.cpp
     src/cell_type.cpp
+    src/simulation.cpp
 
     src/organisms/organism.cpp
     src/organisms/fungus.cpp

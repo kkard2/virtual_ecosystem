@@ -23,6 +23,4 @@ public:
 public:
     [[nodiscard]] auto size() const -> const Size &;
     [[nodiscard]] auto organisms() -> std::map<Position, std::unique_ptr<Organism>, PositionComparer> &;
-
-    auto update() -> void;
 };

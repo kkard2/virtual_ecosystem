@@ -15,9 +15,3 @@ auto Map::size() const -> const Size & {
 auto Map::organisms() -> std::map<Position, std::unique_ptr<Organism>, PositionComparer> & {
     return m_organisms;
 }
-
-auto Map::update() -> void {
-    for (auto &pair : m_organisms) {
-        pair.second->update();
-    }
-}
