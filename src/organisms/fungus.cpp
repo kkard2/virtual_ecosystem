@@ -3,43 +3,39 @@
 Fungus::Fungus(const SpeciesInfo &info) : Organism(info) {
 }
 
-auto Fungus::perform_action(ActionContext &context) -> void {
-    if (!is_alive()) {
-        return;
-    }
-
-    if (is_hungry()) {
-        eat(context);
-        return;
-    }
-
-    reproduce(context);
-}
-
-auto Fungus::eat(ActionContext &context) -> void {
+auto Fungus::try_eat(ActionContext &context) -> bool {
     auto food = context.random_neighbor(CellType::CORPSE);
 
     if (!food.has_value()) {
-        return;
+        return false;
     }
 
     auto position = food.value();
     context.map().organisms().erase(position);
-    m_meals_eaten++;
+    return true;
 }
 
-auto Fungus::reproduce(ActionContext &context) -> void {
-    if (is_hungry()) {
-        throw std::runtime_error("Fungus is hungry and is trying to reproduce.");
+auto Fungus::try_reproduce(ActionContext &context) -> bool {
+    auto empty = context.random_neighbor(CellType::EMPTY);
+
+    if (!empty.has_value()) {
+        return false;
     }
 
+    auto position = empty.value();
+    context.map().organisms().emplace(position, std::make_unique<Fungus>(info()));
+    return true;
+}
+
+auto Fungus::try_move(ActionContext &context) -> void {
     auto empty = context.random_neighbor(CellType::EMPTY);
 
     if (!empty.has_value()) {
         return;
     }
 
+    auto &organisms = context.map().organisms();
     auto position = empty.value();
-    context.map().organisms().emplace(position, std::make_unique<Fungus>(info()));
-    m_meals_eaten -= info().offspring_cost();
+    organisms.emplace(position, std::move(organisms.at(context.position())));
+    organisms.erase(context.position());
 }

@@ -6,10 +6,8 @@ class Fungus : public Organism {
 public:
     explicit Fungus(const SpeciesInfo &info);
 
-public:
-    auto perform_action(ActionContext &context) -> void override;
-
 private:
-    auto eat(ActionContext &context) -> void;
-    auto reproduce(ActionContext &context) -> void;
+    auto try_eat(ActionContext &context) -> bool override;
+    auto try_reproduce(ActionContext &context) -> bool override;
+    auto try_move(ActionContext &context) -> void override;
 };

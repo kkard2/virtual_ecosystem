@@ -29,6 +29,30 @@ auto Organism::update() -> void {
     }
 }
 
+auto Organism::perform_action(ActionContext &context) -> void {
+    if (!is_alive()) {
+        return;
+    }
+
+    auto performed_action = false;
+
+    if (is_hungry()) {
+        if (try_eat(context)) {
+            m_meals_eaten++;
+            performed_action = true;
+        }
+    } else {
+        if (try_reproduce(context)) {
+            m_meals_eaten -= info().offspring_cost();
+            performed_action = true;
+        }
+    }
+
+    if (!performed_action) {
+        try_move(context);
+    }
+}
+
 auto Organism::is_hungry() const -> bool {
     return m_meals_eaten >= info().meal_limit();
 }
