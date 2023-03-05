@@ -2,6 +2,7 @@
 
 #include "position.h"
 #include "species_info.h"
+#include "action_context.h"
 
 class Organism {
 private:
@@ -13,6 +14,9 @@ private:
 public:
     // SAFETY: References must outlive this object.
     explicit Organism(const SpeciesInfo &info);
+
+public:
+    virtual auto perform_action(ActionContext &context) -> void = 0;
 
 public:
     [[nodiscard]] auto info() const -> const SpeciesInfo &;
