@@ -16,4 +16,5 @@ add_executable(virtual_ecosystem
 
     src/organisms/organism.cpp
     src/organisms/fungus.cpp
+    src/organisms/bacteria.cpp
 )
