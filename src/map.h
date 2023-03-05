@@ -9,6 +9,9 @@
 #include "settings.h"
 #include "size.h"
 
+// Fixes cyclic reference
+class Organism;
+
 class Map {
 private:
     const Settings &m_settings;

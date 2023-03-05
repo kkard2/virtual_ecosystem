@@ -1,4 +1,6 @@
+#include <stdexcept>
 #include <unordered_set>
+
 #include "settings.h"
 
 Settings::Settings(

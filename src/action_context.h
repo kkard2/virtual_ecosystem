@@ -6,6 +6,9 @@
 #include "random.h"
 #include "cell_type.h"
 
+// Fixes cyclic reference
+class Map;
+
 class ActionContext {
 private:
     Random &m_random;

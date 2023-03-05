@@ -1,8 +1,13 @@
 #pragma once
 
+#include <memory>
+
 #include "../position.h"
 #include "../species_info.h"
 #include "../action_context.h"
+
+// Fixes cyclic reference
+class ActionContext;
 
 class Organism {
 private:
