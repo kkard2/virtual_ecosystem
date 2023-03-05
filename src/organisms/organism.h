@@ -13,11 +13,12 @@ private:
 public:
     // SAFETY: References must outlive this object (and its offspring).
     explicit Organism(const SpeciesInfo &info);
+    virtual ~Organism() = default;
 
 protected:
-    virtual auto try_eat(ActionContext &context) -> bool = 0;
-    virtual auto try_reproduce(ActionContext &context) -> bool = 0;
-    virtual auto try_move(ActionContext &context) -> void = 0;
+    virtual auto try_eat(ActionContext &context) const -> bool = 0;
+    virtual auto try_move(ActionContext &context) const -> void = 0;
+    [[nodiscard]] virtual auto make_offspring() const -> std::unique_ptr<Organism> = 0;
 
 public:
     [[nodiscard]] auto info() const -> const SpeciesInfo &;
@@ -29,6 +30,7 @@ public:
     auto update() -> void;
     auto perform_action(ActionContext &context) -> void;
 
-protected:
+private:
     [[nodiscard]] auto is_hungry() const -> bool;
+    auto try_reproduce(ActionContext &context) const -> bool;
 };

@@ -15,7 +15,7 @@ auto Bacteria::try_eat_type(ActionContext &context, CellType type) -> bool {
     return true;
 }
 
-auto Bacteria::try_eat(ActionContext &context) -> bool {
+auto Bacteria::try_eat(ActionContext &context) const -> bool {
     if (try_eat_type(context, CellType::ALGA)) {
         return true;
     }
@@ -27,19 +27,7 @@ auto Bacteria::try_eat(ActionContext &context) -> bool {
     return false;
 }
 
-auto Bacteria::try_reproduce(ActionContext &context) -> bool {
-    auto empty = context.random_neighbor(CellType::EMPTY);
-
-    if (!empty.has_value()) {
-        return false;
-    }
-
-    auto position = empty.value();
-    context.map().organisms().emplace(position, std::make_unique<Bacteria>(info()));
-    return true;
-}
-
-auto Bacteria::try_move(ActionContext &context) -> void {
+auto Bacteria::try_move(ActionContext &context) const -> void {
     auto empty = context.random_neighbor(CellType::EMPTY);
 
     if (!empty.has_value()) {
@@ -50,4 +38,8 @@ auto Bacteria::try_move(ActionContext &context) -> void {
     auto position = empty.value();
     organisms.emplace(position, std::move(organisms.at(context.position())));
     organisms.erase(context.position());
+}
+
+auto Bacteria::make_offspring() const -> std::unique_ptr<Organism> {
+    return std::make_unique<Bacteria>(info());
 }

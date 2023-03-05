@@ -56,3 +56,15 @@ auto Organism::perform_action(ActionContext &context) -> void {
 auto Organism::is_hungry() const -> bool {
     return m_meals_eaten >= info().meal_limit();
 }
+
+auto Organism::try_reproduce(ActionContext &context) const -> bool {
+    auto empty = context.random_neighbor(CellType::EMPTY);
+
+    if (!empty.has_value()) {
+        return false;
+    }
+
+    auto position = empty.value();
+    context.map().organisms().emplace(position, make_offspring());
+    return true;
+}

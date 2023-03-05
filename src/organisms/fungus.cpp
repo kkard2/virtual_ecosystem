@@ -3,7 +3,7 @@
 Fungus::Fungus(const SpeciesInfo &info) : Organism(info) {
 }
 
-auto Fungus::try_eat(ActionContext &context) -> bool {
+auto Fungus::try_eat(ActionContext &context) const -> bool {
     auto food = context.random_neighbor(CellType::CORPSE);
 
     if (!food.has_value()) {
@@ -15,19 +15,7 @@ auto Fungus::try_eat(ActionContext &context) -> bool {
     return true;
 }
 
-auto Fungus::try_reproduce(ActionContext &context) -> bool {
-    auto empty = context.random_neighbor(CellType::EMPTY);
-
-    if (!empty.has_value()) {
-        return false;
-    }
-
-    auto position = empty.value();
-    context.map().organisms().emplace(position, std::make_unique<Fungus>(info()));
-    return true;
-}
-
-auto Fungus::try_move(ActionContext &context) -> void {
+auto Fungus::try_move(ActionContext &context) const -> void {
     auto empty = context.random_neighbor(CellType::EMPTY);
 
     if (!empty.has_value()) {
@@ -38,4 +26,8 @@ auto Fungus::try_move(ActionContext &context) -> void {
     auto position = empty.value();
     organisms.emplace(position, std::move(organisms.at(context.position())));
     organisms.erase(context.position());
+}
+
+auto Fungus::make_offspring() const -> std::unique_ptr<Organism> {
+    return std::make_unique<Fungus>(info());
 }
