@@ -10,8 +10,9 @@ add_executable(virtual_ecosystem
     src/random.cpp
     src/size.cpp
     src/settings.cpp
-    src/organism.cpp
     src/map.cpp
     src/action_context.cpp
     src/cell_type.cpp
+
+    src/organisms/organism.cpp
 )

@@ -4,7 +4,7 @@
 #include <optional>
 #include <vector>
 
-#include "organism.h"
+#include "organisms/organism.h"
 #include "position.h"
 #include "settings.h"
 #include "size.h"

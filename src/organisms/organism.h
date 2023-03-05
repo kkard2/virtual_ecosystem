@@ -1,8 +1,8 @@
 #pragma once
 
-#include "position.h"
-#include "species_info.h"
-#include "action_context.h"
+#include "../position.h"
+#include "../species_info.h"
+#include "../action_context.h"
 
 class Organism {
 private:
