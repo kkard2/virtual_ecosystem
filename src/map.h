@@ -6,7 +6,6 @@
 
 #include "organisms/organism.h"
 #include "position.h"
-#include "settings.h"
 #include "size.h"
 
 // Fixes cyclic reference

@@ -6,10 +6,8 @@ set(CMAKE_CXX_STANDARD 20)
 add_executable(virtual_ecosystem
     src/main.cpp
     src/position.cpp
-    src/species_info.cpp
     src/random.cpp
     src/size.cpp
-    src/settings.cpp
     src/map.cpp
     src/action_context.cpp
     src/cell_type.cpp
@@ -19,4 +17,7 @@ add_executable(virtual_ecosystem
     src/organisms/fungus.cpp
     src/organisms/bacteria.cpp
     src/organisms/alga.cpp
+
+    src/settings/species_info.cpp
+    src/settings/settings.cpp
 )

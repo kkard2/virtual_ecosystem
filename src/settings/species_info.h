@@ -3,8 +3,8 @@
 #include <cstdint>
 #include <string>
 
-#include "species_type.h"
-#include "display.h"
+#include "../species_type.h"
+#include "../display.h"
 
 struct SpeciesInfo : public Display {
 private:
