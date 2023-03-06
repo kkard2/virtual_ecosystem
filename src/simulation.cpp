@@ -28,13 +28,22 @@ auto Simulation::step_forward() -> void {
     auto &current_map = m_maps[m_current_map_index - 1];
     auto new_map = current_map;
 
-    for (auto &[position, organism] : new_map.organisms()) {
-        organism->update();
-    }
+    auto organism_keys = std::vector<Position>();
 
     for (auto &[position, organism] : new_map.organisms()) {
+        organism->update();
+        organism_keys.push_back(position);
+    }
+
+    while (!organism_keys.empty()) {
+        auto index = m_random->next(static_cast<size_t>(0), organism_keys.size() - 1);
+        auto position = organism_keys[index];
+
+        auto &organism = new_map.organisms()[position];
         auto context = ActionContext(*m_random, new_map, position);
+
         organism->perform_action(context);
+        organism_keys.erase(organism_keys.begin() + static_cast<int32_t>(index));
     }
 
     m_maps.push_back(std::move(new_map));
