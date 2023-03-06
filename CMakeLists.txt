@@ -20,6 +20,8 @@ add_executable(virtual_ecosystem
     src/organisms/bacteria.cpp
     src/organisms/alga.cpp
 
+    src/presentation/console_simulation_presenter.cpp
+
     src/settings/species_info.cpp
     src/settings/settings.cpp
 )
