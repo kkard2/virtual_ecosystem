@@ -21,3 +21,7 @@ auto Map::size() const -> const Size & {
 auto Map::organisms() -> std::map<Position, std::unique_ptr<Organism>, PositionComparer> & {
     return m_organisms;
 }
+
+auto Map::organisms() const -> const std::map<Position, std::unique_ptr<Organism>, PositionComparer> & {
+    return m_organisms;
+}

@@ -12,8 +12,9 @@ private:
     const Settings &m_settings;
 
 public:
-    MapLoader(const Settings &settings = Settings::default_settings());
+    explicit MapLoader(const Settings &settings = Settings::default_settings());
 
 public:
-    auto load_map(const std::string &path) const -> std::variant<Map, MapLoaderError>;
+    [[nodiscard]] auto settings() const -> const Settings &;
+    [[nodiscard]] auto load_map(const std::string &path) const -> std::variant<Map, MapLoaderError>;
 };

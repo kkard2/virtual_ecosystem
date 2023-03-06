@@ -20,7 +20,7 @@ auto Organism::meals_eaten() const -> uint32_t {
 }
 
 auto Organism::is_alive() const -> bool {
-    return m_age >= info().age_max();
+    return m_age < info().age_max();
 }
 
 auto Organism::update() -> void {

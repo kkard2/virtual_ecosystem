@@ -2,17 +2,19 @@
 
 #include <stdexcept>
 #include <unordered_set>
+#include <utility>
 
 #include "../organisms/alga.h"
 #include "../organisms/fungus.h"
 #include "../organisms/bacteria.h"
 
 Settings::Settings(
-    char corpse_symbol, char empty_symbol,
+    char corpse_symbol, char empty_symbol, std::string corpse_name,
     const SpeciesInfo &alga_info, const SpeciesInfo &fungus_info, const SpeciesInfo &bacteria_info
 )
     : m_corpse_symbol(corpse_symbol)
     , m_empty_symbol(empty_symbol)
+    , m_corpse_name(std::move(corpse_name))
     , m_alga_info(std::move(alga_info))
     , m_fungus_info(std::move(fungus_info))
     , m_bacteria_info(std::move(bacteria_info))
@@ -23,7 +25,7 @@ Settings::Settings(
 
 auto Settings::default_settings() -> const Settings & {
     static const auto settings = Settings(
-        '+', '_',
+        '+', '_', "Corpse",
         SpeciesInfo::default_alga(),
         SpeciesInfo::default_fungus(),
         SpeciesInfo::default_bacteria()
@@ -38,6 +40,10 @@ auto Settings::corpse_symbol() const -> char {
 
 auto Settings::empty_symbol() const -> char {
     return m_empty_symbol;
+}
+
+auto Settings::corpse_name() const -> const std::string & {
+    return m_corpse_name;
 }
 
 auto Settings::alga_info() const -> const SpeciesInfo & {

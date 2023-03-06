@@ -8,6 +8,10 @@ MapLoader::MapLoader(const Settings &settings)
 {
 }
 
+auto MapLoader::settings() const -> const Settings & {
+    return m_settings;
+}
+
 auto MapLoader::load_map(const std::string &path) const -> std::variant<Map, MapLoaderError> {
     auto file = std::ifstream(path);
 
