@@ -3,8 +3,6 @@
 #include <optional>
 #include <string>
 
-#include "user_action.h"
-
 class Input {
 public:
     virtual auto read_seed() -> std::optional<uint64_t> = 0;

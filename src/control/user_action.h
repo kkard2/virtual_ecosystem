@@ -3,6 +3,7 @@
 #include <cstdint>
 
 enum class UserActionType {
+    INVALID,
     HELP,
     QUIT,
     STEP_FORWARD,
