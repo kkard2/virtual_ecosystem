@@ -12,8 +12,8 @@ enum class UserActionType {
 
 class UserAction {
 private:
-    const UserActionType m_type;
-    const size_t m_count;
+    UserActionType m_type;
+    size_t m_count;
 
 public:
     UserAction(UserActionType type, size_t count);

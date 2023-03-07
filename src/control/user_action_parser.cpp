@@ -31,9 +31,9 @@ auto UserActionParser::parse(const std::string &text) -> std::optional<UserActio
         return UserAction(UserActionType::HELP, count);
     case 'q':
         return UserAction(UserActionType::QUIT, count);
-    case ',':
-        return UserAction(UserActionType::STEP_FORWARD, count);
     case '.':
+        return UserAction(UserActionType::STEP_FORWARD, count);
+    case ',':
         return UserAction(UserActionType::STEP_BACK, count);
     default:
         return UserAction(UserActionType::INVALID, count);

@@ -18,9 +18,10 @@ public:
     );
 
 public:
-    auto current_map() const -> const Map &;
-    auto current_map_index() const -> size_t;
-    auto total_maps() const -> size_t;
+    [[nodiscard]] auto current_map() const -> const Map &;
+    [[nodiscard]] auto current_map_index() const -> size_t;
+    [[nodiscard]] auto total_maps() const -> size_t;
+    [[nodiscard]] auto seed() const 
 
     auto step_forward() -> void;
     auto try_step_back() -> bool;

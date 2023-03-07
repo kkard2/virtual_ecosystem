@@ -52,6 +52,7 @@ void ConsoleSimulationPresenter::present(const Simulation &simulation) {
     clear_console();
 
     std::cout << "Press <h> for help or <q> to quit" << std::endl;
+    std::cout << "Seed: " << simulation.seed() <<
     std::cout << std::endl;
     std::cout << "Simulation step: " << simulation.current_map_index();
 
@@ -63,6 +64,21 @@ void ConsoleSimulationPresenter::present(const Simulation &simulation) {
     present_map(simulation.current_map());
     std::cout << std::endl;
     present_stats(simulation);
+}
+
+void ConsoleSimulationPresenter::present_map_loader_error(const MapLoaderError &error) {
+    std::cout << "Error: ";
+
+    switch (error) {
+        case MapLoaderError::COULD_NOT_OPEN_FILE:
+            std::cout << "Could not open file";
+            break;
+        case MapLoaderError::INVALID_SYMBOL:
+            std::cout << "Invalid symbol in the file";
+            break;
+    }
+
+    std::cout << std::endl;
 }
 
 void ConsoleSimulationPresenter::present_map(const Simulation &simulation) const {

@@ -16,6 +16,7 @@ add_executable(virtual_ecosystem
     src/control/console_input.cpp
     src/control/user_action.cpp
     src/control/user_action_parser.cpp
+    src/control/application.cpp
 
     src/loading/map_loader.cpp
 

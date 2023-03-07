@@ -1,15 +1,11 @@
 #include "console_input.h"
+#include "user_action_parser.h"
 
 #include <iostream>
-#include <sstream>
-
-#ifdef _WIN32
-#include <conio.h>
-#else
-#error "Unsupported platform"
-#endif // _WIN32
+#include <filesystem>
 
 auto ConsoleInput::read_seed() -> std::optional<uint64_t> {
+    std::cout << "Enter seed (empty for random):" << std::endl;
     auto line = std::string();
     std::getline(std::cin, line);
 
@@ -32,17 +28,24 @@ auto ConsoleInput::read_seed() -> std::optional<uint64_t> {
     }
 }
 
-auto ConsoleInput::read_path() -> std::string {
+auto ConsoleInput::read_path() -> std::filesystem::path {
+    std::cout << "Enter path to file:" << std::endl;
     auto line = std::string();
     std::getline(std::cin, line);
+    auto path = std::filesystem::path(line);
 
-    return line;
+    while (!std::filesystem::exists(path)) {
+        std::cout << "File does not exist, try again:" << std::endl;
+        std::getline(std::cin, line);
+        path = std::filesystem::path(line);
+    }
+
+    return path;
 }
 
-auto ConsoleInput::read_key() -> char {
-#ifdef _WIN32
-    return static_cast<char>(_getch());
-#else
-#error "Unsupported platform"
-#endif // _WIN32
+auto ConsoleInput::read_action() -> std::optional<UserAction> {
+    std::cout << "Enter action:" << std::endl;
+    auto line = std::string();
+    std::getline(std::cin, line);
+    return UserActionParser::parse(line);
 }

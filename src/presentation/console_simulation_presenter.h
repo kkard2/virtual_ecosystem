@@ -16,6 +16,7 @@ private:
 
 public:
     void present(const Simulation &simulation) override;
+    void present_map_loader_error(const MapLoaderError &error) override;
 
 private:
     void present_map(const Simulation &simulation) const;

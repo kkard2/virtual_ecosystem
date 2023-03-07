@@ -1,6 +1,7 @@
 #pragma once
 
 #include <variant>
+#include <filesystem>
 
 #include "map_loader_error.h"
 
@@ -16,5 +17,5 @@ public:
 
 public:
     [[nodiscard]] auto settings() const -> const Settings &;
-    [[nodiscard]] auto load_map(const std::string &path) const -> std::variant<Map, MapLoaderError>;
+    [[nodiscard]] auto load_map(const std::filesystem::path &path) const -> std::variant<Map, MapLoaderError>;
 };
