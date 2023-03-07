@@ -38,3 +38,19 @@ _ # _ @ _ # _
 @ # _ @ * _ #
 ```
 This map file represents a 7x7 grid with bacteria, fungus and alga distributed randomly.
+
+# Description
+
+A virtual ecosystem is a simple bio-cybernetic simulator of an ecosystem with three species of virtual organisms:
+algae *, fungi # and bacteria @. The ecosystem environment is a rectangular board of cells, called niches.
+Each niche can be empty, occupied by a living or dead organism. Each niche has its direct neighborhood.
+Living organisms only interact with their neighborhood. The ecosystem develops in simulation steps.
+
+Each organism ages and dies when it exceeds its maximum age (in simulation steps). Each species has its own age range.
+If an organism is not dead, it tries to eat. Fungi absorb dead organisms in their neighborhood.
+Bacteria hunt algae or other bacteria in their neighborhood. Algae get food by photosynthesis.
+
+If an organism is not hungry, it tries to reproduce. It places its offspring in a free cell in its neighborhood.
+Reproduction costs food for the parent. The offspring is young and hungry.
+
+If a fungus or bacterium does not eat or reproduce, it changes cell if there is a free one in its neighborhood.
