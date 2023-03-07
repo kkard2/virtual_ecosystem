@@ -2,9 +2,7 @@
 
 #include <cstdint>
 
-#include "display.h"
-
-struct Position : public Display {
+struct Position {
 private:
     int32_t m_x;
     int32_t m_y;
@@ -15,12 +13,6 @@ public:
 public:
     [[nodiscard]] auto x() const -> int32_t;
     [[nodiscard]] auto y() const -> int32_t;
-
-    [[nodiscard]] auto with_x(int32_t new_x) const -> Position;
-    [[nodiscard]] auto with_y(int32_t new_y) const -> Position;
-
-public:
-    [[nodiscard]] std::string to_string() const override;
 };
 
 class PositionComparer {

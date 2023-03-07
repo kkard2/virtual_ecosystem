@@ -4,9 +4,8 @@
 #include <string>
 
 #include "../species_type.h"
-#include "../display.h"
 
-struct SpeciesInfo : public Display {
+struct SpeciesInfo {
 private:
     const SpeciesType m_type;
     const std::string m_name;
@@ -40,7 +39,4 @@ public:
     [[nodiscard]] auto age_max() const -> uint32_t;
     [[nodiscard]] auto offspring_cost() const -> uint32_t;
     [[nodiscard]] auto meal_limit() const -> uint32_t;
-
-public:
-    [[nodiscard]] std::string to_string() const override;
 };

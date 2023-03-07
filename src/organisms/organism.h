@@ -34,8 +34,6 @@ protected:
 
 public:
     [[nodiscard]] auto info() const -> const SpeciesInfo &;
-    [[nodiscard]] auto age() const -> uint32_t;
-    [[nodiscard]] auto meals_eaten() const -> uint32_t;
 
     [[nodiscard]] auto is_alive() const -> bool;
 

@@ -75,14 +75,3 @@ auto SpeciesInfo::offspring_cost() const -> uint32_t {
 auto SpeciesInfo::meal_limit() const -> uint32_t {
     return m_meal_limit;
 }
-
-std::string SpeciesInfo::to_string() const {
-    std::stringstream ss;
-    ss
-        << name() << " (" << symbol() << "):" << std::endl
-        << "  Age: " << age_min() << "-" << age_max() << std::endl
-        << "  Offspring cost: " << offspring_cost() << std::endl
-        << "  Meal limit: " << meal_limit();
-
-    return ss.str();
-}
