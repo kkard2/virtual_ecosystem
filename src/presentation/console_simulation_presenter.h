@@ -11,14 +11,17 @@ public:
     explicit ConsoleSimulationPresenter(const Settings &settings);
 
 private:
-    static void clear_console();
-    static void present_species_stats(const std::string &name, char symbol, size_t amount, size_t alignment);
+    static auto clear_console() -> void;
+    static auto present_species_stats(const std::string &name, char symbol, size_t amount, size_t alignment) -> void;
 
 public:
-    void present(const Simulation &simulation) override;
-    void present_map_loader_error(const MapLoaderError &error) override;
+    auto present(const Simulation &simulation) -> void override;
+    auto present_map_loader_error(const MapLoaderError &error) -> void override;
 
 private:
-    void present_map(const Simulation &simulation) const;
-    void present_stats(const Simulation &simulation) const;
+    auto present_map(const Simulation &simulation) const -> void;
+    auto present_stats(const Simulation &simulation) const -> void;
+
+    auto present_organism_symbol(
+        const std::map<Position, std::unique_ptr<Organism>, PositionComparer> &organisms, size_t x, size_t y) const -> void;
 };

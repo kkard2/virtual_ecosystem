@@ -5,6 +5,7 @@
 #include "../position.h"
 #include "../settings/species_info.h"
 #include "../action_context.h"
+#include "../random.h"
 
 // Fixes cyclic reference
 class ActionContext;
@@ -12,12 +13,16 @@ class ActionContext;
 class Organism {
 private:
     const SpeciesInfo &m_info;
+    uint32_t m_age_max;
     uint32_t m_age;
     uint32_t m_meals_eaten;
 
 public:
-    explicit Organism(const SpeciesInfo &info);
+    Organism(Random &random, const SpeciesInfo &info);
     virtual ~Organism() = default;
+
+protected:
+    Organism(const Organism &) = default;
 
 public:
     [[nodiscard]] virtual auto clone() const -> std::unique_ptr<Organism> = 0;
@@ -25,7 +30,7 @@ public:
 protected:
     virtual auto try_eat(ActionContext &context) const -> bool = 0;
     virtual auto try_move(ActionContext &context) const -> void = 0;
-    [[nodiscard]] virtual auto make_offspring() const -> std::unique_ptr<Organism> = 0;
+    [[nodiscard]] virtual auto make_offspring(Random &random) const -> std::unique_ptr<Organism> = 0;
 
 public:
     [[nodiscard]] auto info() const -> const SpeciesInfo &;

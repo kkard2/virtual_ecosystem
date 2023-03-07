@@ -13,6 +13,4 @@ int main() {
 
     auto app = Application(input, presenter, std::nullopt, std::nullopt, settings);
     app.run();
-
-    system("pause");
 }

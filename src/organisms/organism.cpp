@@ -1,8 +1,9 @@
 #include "organism.h"
 
-Organism::Organism(const SpeciesInfo &info)
+Organism::Organism(Random &random, const SpeciesInfo &info)
     : m_info(info)
-    , m_age(info.age_min())
+    , m_age_max(random.next(info.age_min(), info.age_max()))
+    , m_age(0)
     , m_meals_eaten(0)
 {
 }
@@ -20,7 +21,7 @@ auto Organism::meals_eaten() const -> uint32_t {
 }
 
 auto Organism::is_alive() const -> bool {
-    return m_age < info().age_max();
+    return m_age < m_age_max;
 }
 
 auto Organism::update() -> void {
@@ -54,11 +55,11 @@ auto Organism::perform_action(ActionContext &context) -> void {
 }
 
 auto Organism::kill() -> void {
-    m_age = info().age_max();
+    m_age = m_age_max;
 }
 
 auto Organism::is_hungry() const -> bool {
-    return m_meals_eaten >= info().meal_limit();
+    return m_meals_eaten < info().meal_limit();
 }
 
 auto Organism::try_reproduce(ActionContext &context) const -> bool {
@@ -69,6 +70,6 @@ auto Organism::try_reproduce(ActionContext &context) const -> bool {
     }
 
     auto position = empty.value();
-    context.map().organisms().emplace(position, make_offspring());
+    context.map().organisms().emplace(position, make_offspring(context.random()));
     return true;
 }

@@ -4,7 +4,7 @@
 
 class Bacteria : public Organism {
 public:
-    explicit Bacteria(const SpeciesInfo &info);
+    Bacteria(Random &random, const SpeciesInfo &info);
 
 public:
     [[nodiscard]] auto clone() const -> std::unique_ptr<Organism> override;
@@ -15,5 +15,5 @@ private:
 private:
     auto try_eat(ActionContext &context) const -> bool override;
     auto try_move(ActionContext &context) const -> void override;
-    [[nodiscard]] auto make_offspring() const -> std::unique_ptr<Organism> override;
+    [[nodiscard]] auto make_offspring(Random &random) const -> std::unique_ptr<Organism> override;
 };

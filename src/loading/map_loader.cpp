@@ -3,8 +3,9 @@
 #include <fstream>
 #include <string>
 
-MapLoader::MapLoader(const Settings &settings)
-    : m_settings(settings)
+MapLoader::MapLoader(Random &random, const Settings &settings)
+    : m_random(random)
+    , m_settings(settings)
 {
 }
 
@@ -45,7 +46,7 @@ auto MapLoader::load_map(const std::filesystem::path &path) const -> std::varian
             }
 
             auto position = Position(x, y);
-            auto organism = m_settings.make_species_from_symbol(character);
+            auto organism = m_settings.make_species_from_symbol(character, m_random);
 
             if (!organism.has_value()) {
                 return MapLoaderError::INVALID_SYMBOL;

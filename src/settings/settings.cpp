@@ -58,22 +58,22 @@ auto Settings::bacteria_info() const -> const SpeciesInfo & {
     return m_bacteria_info;
 }
 
-auto Settings::make_species_from_symbol(char symbol) const -> std::optional<std::unique_ptr<Organism>> {
+auto Settings::make_species_from_symbol(char symbol, Random &random) const -> std::optional<std::unique_ptr<Organism>> {
     if (symbol == m_alga_info.symbol()) {
-        return std::make_unique<Alga>(m_alga_info);
+        return std::make_unique<Alga>(random, m_alga_info);
     }
 
     if (symbol == m_fungus_info.symbol()) {
-        return std::make_unique<Fungus>(m_fungus_info);
+        return std::make_unique<Fungus>(random, m_fungus_info);
     }
 
     if (symbol == m_bacteria_info.symbol()) {
-        return std::make_unique<Bacteria>(m_bacteria_info);
+        return std::make_unique<Bacteria>(random, m_bacteria_info);
     }
 
     if (symbol == m_corpse_symbol) {
         // Organism type does not matter here
-        auto organism = std::make_unique<Alga>(m_alga_info);
+        auto organism = std::make_unique<Alga>(random, m_alga_info);
         organism->kill();
         return organism;
     }

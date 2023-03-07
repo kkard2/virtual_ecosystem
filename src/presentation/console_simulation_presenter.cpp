@@ -52,7 +52,7 @@ void ConsoleSimulationPresenter::present(const Simulation &simulation) {
     clear_console();
 
     std::cout << "Press <h> for help or <q> to quit" << std::endl;
-    std::cout << "Seed: " << simulation.seed() <<
+    std::cout << "Seed: " << simulation.seed() << std::endl;
     std::cout << std::endl;
     std::cout << "Simulation step: " << simulation.current_map_index();
 
@@ -61,9 +61,10 @@ void ConsoleSimulationPresenter::present(const Simulation &simulation) {
     }
 
     std::cout << std::endl << std::endl;
-    present_map(simulation.current_map());
+    present_map(simulation);
     std::cout << std::endl;
     present_stats(simulation);
+    std::cout << std::endl;
 }
 
 void ConsoleSimulationPresenter::present_map_loader_error(const MapLoaderError &error) {
@@ -79,6 +80,7 @@ void ConsoleSimulationPresenter::present_map_loader_error(const MapLoaderError &
     }
 
     std::cout << std::endl;
+    std::cin.get();
 }
 
 void ConsoleSimulationPresenter::present_map(const Simulation &simulation) const {
@@ -88,19 +90,31 @@ void ConsoleSimulationPresenter::present_map(const Simulation &simulation) const
 
     for (size_t y = 0; y < size.height(); y++) {
         for (size_t x = 0; x < size.width(); x++) {
-            auto position = Position(static_cast<int32_t>(x), static_cast<int32_t>(y));
-
-            if (organisms.contains(position)) {
-                std::cout << organisms.at(position)->info().symbol();
-            } else {
-                std::cout << m_settings.empty_symbol();
-            }
-
-            std::cout << ' ';
+            present_organism_symbol(organisms, x, y);
         }
 
         std::cout << std::endl;
     }
+}
+
+void ConsoleSimulationPresenter::present_organism_symbol(
+    const std::map<Position, std::unique_ptr<Organism>, PositionComparer> &organisms, size_t x, size_t y
+) const {
+    auto position = Position(static_cast<int32_t>(x), static_cast<int32_t>(y));
+
+    if (organisms.contains(position)) {
+        const auto &organism = organisms.at(position);
+
+        if (!organism->is_alive()) {
+            std::cout << m_settings.corpse_symbol();
+        } else {
+            std::cout << organism->info().symbol();
+        }
+    } else {
+        std::cout << m_settings.empty_symbol();
+    }
+
+    std::cout << ' ';
 }
 
 void ConsoleSimulationPresenter::present_stats(const Simulation &simulation) const {

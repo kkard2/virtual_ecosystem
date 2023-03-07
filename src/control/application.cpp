@@ -36,7 +36,7 @@ auto Application::run() -> void {
         m_path = m_input.read_path();
     }
 
-    auto loader = MapLoader(m_settings);
+    auto loader = MapLoader(*random, m_settings);
 
     auto starting_map = loader.load_map(m_path->string());
 

@@ -1,6 +1,6 @@
 #include "bacteria.h"
 
-Bacteria::Bacteria(const SpeciesInfo &info) : Organism(info) {
+Bacteria::Bacteria(Random &random, const SpeciesInfo &info) : Organism(random, info) {
 }
 
 auto Bacteria::clone() const -> std::unique_ptr<Organism> {
@@ -44,6 +44,6 @@ auto Bacteria::try_move(ActionContext &context) const -> void {
     organisms.erase(context.position());
 }
 
-auto Bacteria::make_offspring() const -> std::unique_ptr<Organism> {
-    return std::make_unique<Bacteria>(info());
+auto Bacteria::make_offspring(Random &random) const -> std::unique_ptr<Organism> {
+    return std::make_unique<Bacteria>(random, info());
 }

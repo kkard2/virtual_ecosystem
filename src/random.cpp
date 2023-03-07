@@ -22,6 +22,15 @@ auto Random::next(int32_t min, int32_t max) -> int32_t {
     return distribution(m_engine);
 }
 
+auto Random::next(uint32_t min, uint32_t max) -> uint32_t {
+    if (min > max) {
+        std::swap(min, max);
+    }
+
+    auto distribution = std::uniform_int_distribution<uint32_t>(min, max);
+    return distribution(m_engine);
+}
+
 auto Random::next(size_t min, size_t max) -> size_t {
     if (min > max) {
         std::swap(min, max);

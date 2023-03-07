@@ -26,7 +26,7 @@ SpeciesInfo::SpeciesInfo(
 
 auto SpeciesInfo::default_alga() -> const SpeciesInfo & {
     static const auto info = SpeciesInfo(
-        SpeciesType::ALGA, "Alga", '*', 5, 10, 2, 6
+        SpeciesType::ALGA, "Alga", '*', 5, 10, 2, 5
     );
 
     return info;
@@ -34,7 +34,7 @@ auto SpeciesInfo::default_alga() -> const SpeciesInfo & {
 
 auto SpeciesInfo::default_fungus() -> const SpeciesInfo & {
     static const auto info = SpeciesInfo(
-        SpeciesType::FUNGUS, "Fungus", '#', 40, 60, 3, 30
+        SpeciesType::FUNGUS, "Fungus", '#', 40, 60, 3, 15
     );
 
     return info;
@@ -42,7 +42,7 @@ auto SpeciesInfo::default_fungus() -> const SpeciesInfo & {
 
 auto SpeciesInfo::default_bacteria() -> const SpeciesInfo & {
     static const auto info = SpeciesInfo(
-        SpeciesType::BACTERIA, "Bacteria", '@', 25, 40, 3, 10
+        SpeciesType::BACTERIA, "Bacteria", '@', 25, 40, 3, 5
     );
 
     return info;

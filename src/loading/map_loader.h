@@ -11,9 +11,10 @@
 class MapLoader {
 private:
     const Settings &m_settings;
+    Random &m_random;
 
 public:
-    explicit MapLoader(const Settings &settings = Settings::default_settings());
+    explicit MapLoader(Random &random, const Settings &settings = Settings::default_settings());
 
 public:
     [[nodiscard]] auto settings() const -> const Settings &;

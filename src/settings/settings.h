@@ -38,7 +38,7 @@ public:
     [[nodiscard]] auto fungus_info() const -> const SpeciesInfo &;
     [[nodiscard]] auto bacteria_info() const -> const SpeciesInfo &;
 
-    [[nodiscard]] auto make_species_from_symbol(char symbol) const -> std::optional<std::unique_ptr<Organism>>;
+    [[nodiscard]] auto make_species_from_symbol(char symbol, Random &random) const -> std::optional<std::unique_ptr<Organism>>;
 
 private:
     void assert_info_types_correct() const;

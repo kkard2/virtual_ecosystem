@@ -1,3 +1,4 @@
+#include <iostream>
 #include "simulation.h"
 
 Simulation::Simulation(Map starting_map, std::unique_ptr<Random> random)
@@ -20,13 +21,17 @@ auto Simulation::total_maps() const -> size_t {
     return m_maps.size();
 }
 
+auto Simulation::seed() const -> uint32_t {
+    return m_random->seed();
+}
+
 auto Simulation::step_forward() -> void {
     if (++m_current_map_index < m_maps.size()) {
         return;
     }
 
     auto &current_map = m_maps[m_current_map_index - 1];
-    auto new_map = current_map;
+    auto new_map = Map(current_map);
 
     auto organism_keys = std::vector<Position>();
 
@@ -38,12 +43,16 @@ auto Simulation::step_forward() -> void {
     while (!organism_keys.empty()) {
         auto index = m_random->next(static_cast<size_t>(0), organism_keys.size() - 1);
         auto position = organism_keys[index];
+        organism_keys.erase(organism_keys.begin() + static_cast<int32_t>(index));
+
+        if (!new_map.organisms().contains(position)) {
+            continue;
+        }
 
         auto &organism = new_map.organisms()[position];
         auto context = ActionContext(*m_random, new_map, position);
 
         organism->perform_action(context);
-        organism_keys.erase(organism_keys.begin() + static_cast<int32_t>(index));
     }
 
     m_maps.push_back(std::move(new_map));
