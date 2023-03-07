@@ -16,7 +16,7 @@ ConsoleSimulationPresenter::ConsoleSimulationPresenter(const Settings &settings)
 }
 
 void ConsoleSimulationPresenter::clear_console() {
-#ifdef _WIN32
+#if defined(_WIN32)
     COORD topLeft = {0, 0};
     HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
     CONSOLE_SCREEN_BUFFER_INFO screen;
@@ -31,10 +31,11 @@ void ConsoleSimulationPresenter::clear_console() {
         screen.dwSize.X * screen.dwSize.Y, topLeft, &written
     );
     SetConsoleCursorPosition(console, topLeft);
-#endif // _WIN32
-#ifdef __linux__
+#elif defined(__linux__)
     std::cout << "\x1B[2J\x1B[H";
-#endif // __linux__
+#else
+#error "Unsupported platform"
+#endif
 }
 
 void ConsoleSimulationPresenter::present_species_stats(

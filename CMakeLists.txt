@@ -13,7 +13,7 @@ add_executable(virtual_ecosystem
     src/cell_type.cpp
     src/simulation.cpp
 
-    src/control/input.cpp
+    src/control/console_input.cpp
     src/control/user_action.cpp
 
     src/loading/map_loader.cpp

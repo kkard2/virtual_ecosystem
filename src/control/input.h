@@ -1,11 +1,13 @@
 #pragma once
 
 #include <optional>
+#include <string>
 
 #include "user_action.h"
 
 class Input {
 public:
-    static auto read_uint64() -> std::optional<uint64_t>;
-    static auto read_action() -> UserAction;
+    virtual auto read_seed() -> std::optional<uint64_t> = 0;
+    virtual auto read_path() -> std::string = 0;
+    virtual auto read_key() -> char = 0;
 };

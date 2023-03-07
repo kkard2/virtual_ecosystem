@@ -1,4 +1,4 @@
-#include "input.h"
+#include "console_input.h"
 
 #include <iostream>
 #include <sstream>
@@ -9,7 +9,7 @@
 #error "Unsupported platform"
 #endif // _WIN32
 
-auto Input::read_uint64() -> std::optional<uint64_t> {
+auto ConsoleInput::read_seed() -> std::optional<uint64_t> {
     auto line = std::string();
     std::getline(std::cin, line);
 
@@ -20,7 +20,7 @@ auto Input::read_uint64() -> std::optional<uint64_t> {
     while (true) {
         if (!line.empty()) {
             auto iss = std::istringstream(line);
-            uint64_t number;
+            auto number = uint64_t();
 
             if (!!(iss >> number)) {
                 return number;
@@ -32,12 +32,17 @@ auto Input::read_uint64() -> std::optional<uint64_t> {
     }
 }
 
-auto Input::read_action() -> UserAction {
-    char key;
+auto ConsoleInput::read_path() -> std::string {
+    auto line = std::string();
+    std::getline(std::cin, line);
 
-    // TODO: Start here
+    return line;
+}
 
-    do {
-        key = static_cast<char>(_getch());
-    } while (isdigit(key));
+auto ConsoleInput::read_key() -> char {
+#ifdef _WIN32
+    return static_cast<char>(_getch());
+#else
+#error "Unsupported platform"
+#endif // _WIN32
 }
