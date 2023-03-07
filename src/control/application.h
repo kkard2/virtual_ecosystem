@@ -13,7 +13,7 @@ private:
     SimulationPresenter &m_presenter;
     const Settings &m_settings;
 
-    std::optional<uint64_t> m_seed;
+    std::optional<uint32_t> m_seed;
     std::optional<std::filesystem::path> m_path;
 
     std::unique_ptr<Simulation> m_simulation;
@@ -22,7 +22,7 @@ public:
     Application(
         Input &input,
         SimulationPresenter &presenter,
-        std::optional<uint64_t> seed = std::nullopt,
+        std::optional<uint32_t> seed = std::nullopt,
         std::optional<std::filesystem::path> path = std::nullopt,
         const Settings &settings = Settings::default_settings()
     );

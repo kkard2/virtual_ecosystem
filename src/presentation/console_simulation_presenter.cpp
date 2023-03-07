@@ -51,7 +51,7 @@ void ConsoleSimulationPresenter::present_species_stats(
 void ConsoleSimulationPresenter::present(const Simulation &simulation) {
     clear_console();
 
-    std::cout << "Press <h> for help or <q> to quit" << std::endl;
+    std::cout << "Enter 'h' for help or 'q' to quit" << std::endl;
     std::cout << "Seed: " << simulation.seed() << std::endl;
     std::cout << std::endl;
     std::cout << "Simulation step: " << simulation.current_map_index();
@@ -80,6 +80,19 @@ void ConsoleSimulationPresenter::present_map_loader_error(const MapLoaderError &
     }
 
     std::cout << std::endl;
+    std::cin.get();
+}
+
+auto ConsoleSimulationPresenter::present_help_screen() -> void {
+    clear_console();
+    std::cout << "Enter 'h' for help" << std::endl;
+    std::cout << "Enter 'q' to quit" << std::endl;
+    std::cout << "Enter '.' to go to the next step" << std::endl;
+    std::cout << "Enter ',' to go to the previous step" << std::endl;
+    std::cout << "Enter '<number>.' to go forward <number> steps" << std::endl;
+    std::cout << "Enter '<number>,' to go backward <number> steps" << std::endl;
+    std::cout << std::endl;
+    std::cout << "Press enter to exit this screen..." << std::endl;
     std::cin.get();
 }
 

@@ -17,6 +17,7 @@ private:
 public:
     auto present(const Simulation &simulation) -> void override;
     auto present_map_loader_error(const MapLoaderError &error) -> void override;
+    auto present_help_screen() -> void override;
 
 private:
     auto present_map(const Simulation &simulation) const -> void;

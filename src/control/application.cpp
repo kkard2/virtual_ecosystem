@@ -7,7 +7,7 @@
 Application::Application(
     Input &input,
     SimulationPresenter &presenter,
-    std::optional<uint64_t> seed,
+    std::optional<uint32_t> seed,
     std::optional<std::filesystem::path> path,
     const Settings &settings
 )
@@ -66,7 +66,7 @@ auto Application::loop() -> void {
             case UserActionType::INVALID:
                 break;
             case UserActionType::HELP:
-                // TODO:
+                m_presenter.present_help_screen();
                 break;
             case UserActionType::QUIT:
                 return;

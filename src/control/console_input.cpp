@@ -4,7 +4,7 @@
 #include <iostream>
 #include <filesystem>
 
-auto ConsoleInput::read_seed() -> std::optional<uint64_t> {
+auto ConsoleInput::read_seed() -> std::optional<uint32_t> {
     std::cout << "Enter seed (empty for random):" << std::endl;
     auto line = std::string();
     std::getline(std::cin, line);
@@ -16,7 +16,7 @@ auto ConsoleInput::read_seed() -> std::optional<uint64_t> {
     while (true) {
         if (!line.empty()) {
             auto iss = std::istringstream(line);
-            auto number = uint64_t();
+            auto number = uint32_t();
 
             if (!!(iss >> number)) {
                 return number;
